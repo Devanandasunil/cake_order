@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cake Order Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff8f0;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #ff4d6d;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    .cake-gallery {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 20px;
+      gap: 20px;
+    }
+    .cake-gallery div {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 10px;
+      width: 220px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .cake-gallery img {
+      width: 200px;
+      height: 150px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+    form {
+      background: #fff;
+      margin: 20px auto;
+      padding: 20px;
+      width: 350px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    form label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    form input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      display: block;
+      margin-top: 15px;
+      padding: 10px;
+      background: #ff4d6d;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #e63950;
+    }
+    #billBox {
+      margin: 20px auto;
+      padding: 15px;
+      width: 350px;
+      background: #28a745;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      border-radius: 8px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🍰 Welcome to Sweet Cake Shop</h1>
+    <p>Select your favorite cakes and place your order!</p>
+  </header>
+
+  <!-- Cake Gallery -->
+  <div class="cake-gallery">
+    <div>
+      <img src="rainbow_cake.jpg" alt="Rainbow Cake">
+      <p><b>Rainbow Cake</b> – Rs. 300</p>
+    </div>
+    <div>
+      <img src="chocolate_cake.jpg" alt="Chocolate Cake">
+      <p><b>Chocolate Cake</b> – Rs. 200</p>
+    </div>
+    <div>
+      <img src="redvelvet_cake.jpg" alt="Red Velvet Cake">
+      <p><b>Red Velvet Cake</b> – Rs. 250</p>
+    </div>
+    <div>
+      <img src="black_forest_cake.jpg" alt="Black Forest Cake">
+      <p><b>Black Forest Cake</b> – Rs. 350</p>
+    </div>
+  </div>
+
+  <!-- Cake Order Form -->
+  <form>
+    <h2>Order Form</h2>
+
+    <label>Rainbow Cake (Quantity)</label>
+    <input type="number" id="rainbow" min="0" value="0">
+
+    <label>Chocolate Cake (Quantity)</label>
+    <input type="number" id="choco" min="0" value="0">
+
+    <label>Red Velvet Cake (Quantity)</label>
+    <input type="number" id="redvelvet" min="0" value="0">
+
+    <label>Black Forest Cake (Quantity)</label>
+    <input type="number" id="blackforest" min="0" value="0">
+
+    <button type="button" id="orderBtn">Place Order</button>
+  </form>
+
+  <!-- Bill Display -->
+  <div id="billBox">
+    🎉 Thank you for your order! <br>
+    Your Total = Rs. <span id="total"></span>
+  </div>
+
+  <script>
+    document.getElementById("orderBtn").addEventListener("click", function() {
+      let rainbow = parseInt(document.getElementById("rainbow").value) || 0;
+      let choco = parseInt(document.getElementById("choco").value) || 0;
+      let redvelvet = parseInt(document.getElementById("redvelvet").value) || 0;
+      let blackforest = parseInt(document.getElementById("blackforest").value) || 0;
+
+      let total = (rainbow * 300) + (choco * 200) + (redvelvet * 250) + (blackforest * 350);
+
+      if (total === 0) {
+        alert("⚠️ Please select at least one cake before ordering!");
+        document.getElementById("billBox").style.display = "none";
+      } else {
+        document.getElementById("total").textContent = total;
+        document.getElementById("billBox").style.display = "block";
+      }
+    });
+  </script>
+
+</body>
+</html>
